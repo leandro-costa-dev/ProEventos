@@ -6,13 +6,13 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './eventos.component.html',
   styleUrls: ['./eventos.component.scss']
 })
-export class EventosComponent implements OnInit {
+export class EventosComponent implements OnInit{
 
   public eventos: any;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient){ }
 
-  ngOnInit(): void {
+  ngOnInit(): void{    
     this.getEventos();
   }
 
