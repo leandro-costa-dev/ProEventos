@@ -5,8 +5,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using ProEventos.API.Data;
-using ProEventos.API.Models;
+using ProEventos.Persistence;
+using ProEventos.Domain;
+using ProEventos.Persistence.Context;
 
 namespace ProEventos.API.Controllers
 {
@@ -14,8 +15,8 @@ namespace ProEventos.API.Controllers
     [Route("api/[controller]")]
     public class EventosController : ControllerBase
     {
-        private readonly DataContext _context;
-        public EventosController(DataContext context)
+        private readonly ProEventosContext _context;
+        public EventosController(ProEventosContext context)
         {
             _context = context;
         }
@@ -35,7 +36,7 @@ namespace ProEventos.API.Controllers
         public ActionResult<Evento> ObterEventoId(int id)
         {
             var evento = _context.Eventos.FirstOrDefault(
-            evento => evento.EventoId == id);
+            evento => evento.Id == id);
 
             if(evento is null)
             {
@@ -57,13 +58,13 @@ namespace ProEventos.API.Controllers
             _context.SaveChanges();
 
             return new CreatedAtRouteResult("ObterEventoId",
-                new { id = evento.EventoId }, evento);
+                new { id = evento.Id }, evento);
         }
 
         [HttpPut("{id:int}")]
         public ActionResult AlterarEvento(int id, Evento evento)
         {
-            if (id != evento.EventoId)
+            if (id != evento.Id)
             {
                 return BadRequest();
             }
@@ -77,7 +78,7 @@ namespace ProEventos.API.Controllers
         [HttpDelete("{id:int}")]
         public ActionResult DeletarEvento(int id)
         {
-            var evento = _context.Eventos.FirstOrDefault(evento => evento.EventoId == id);
+            var evento = _context.Eventos.FirstOrDefault(evento => evento.Id == id);
 
             if (evento is null)
             {
