@@ -92,7 +92,7 @@ namespace ProEventos.Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "RedeSocials",
+                name: "RedesSociais",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
@@ -104,15 +104,15 @@ namespace ProEventos.Persistence.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_RedeSocials", x => x.Id);
+                    table.PrimaryKey("PK_RedesSociais", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_RedeSocials_Eventos_EventoId",
+                        name: "FK_RedesSociais_Eventos_EventoId",
                         column: x => x.EventoId,
                         principalTable: "Eventos",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_RedeSocials_Palestrantes_PalestranteId",
+                        name: "FK_RedesSociais_Palestrantes_PalestranteId",
                         column: x => x.PalestranteId,
                         principalTable: "Palestrantes",
                         principalColumn: "Id",
@@ -130,13 +130,13 @@ namespace ProEventos.Persistence.Migrations
                 column: "PalestranteId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_RedeSocials_EventoId",
-                table: "RedeSocials",
+                name: "IX_RedesSociais_EventoId",
+                table: "RedesSociais",
                 column: "EventoId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_RedeSocials_PalestranteId",
-                table: "RedeSocials",
+                name: "IX_RedesSociais_PalestranteId",
+                table: "RedesSociais",
                 column: "PalestranteId");
         }
 
@@ -149,7 +149,7 @@ namespace ProEventos.Persistence.Migrations
                 name: "PalestrantesEventos");
 
             migrationBuilder.DropTable(
-                name: "RedeSocials");
+                name: "RedesSociais");
 
             migrationBuilder.DropTable(
                 name: "Eventos");

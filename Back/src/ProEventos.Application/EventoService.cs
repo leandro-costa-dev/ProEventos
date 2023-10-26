@@ -55,7 +55,7 @@ namespace ProEventos.Application
                 throw new Exception(ex.Message);
             }
         }
-        public async Task<bool> DeleteEvento(int eventoId, Evento model)
+        public async Task<bool> DeleteEvento(int eventoId)
         {
             try
             {                
